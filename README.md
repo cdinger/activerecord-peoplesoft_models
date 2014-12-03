@@ -78,5 +78,8 @@ end
 student = Student.where(emplid: "1234567").first
 student.colleges
 ```
+## Required table permissions
 
-
+This gem uses PeopleSoft's `PSRECDEFN` and `PSFIELD` tables to lookup up table
+metadata. If access to your PeopleSoft instance is restricted, be sure to ask
+for access to these tables.
