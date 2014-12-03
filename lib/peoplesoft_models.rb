@@ -1,4 +1,5 @@
 require "composite_primary_keys"
+require "peoplesoft_models/base"
 require "peoplesoft_models/version"
 require "peoplesoft_models/record"
 require "peoplesoft_models/field"

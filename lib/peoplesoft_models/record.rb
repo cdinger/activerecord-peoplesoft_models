@@ -1,7 +1,7 @@
 require_relative "effective_scope"
 
 module PeoplesoftModels
-  class Record < ActiveRecord::Base
+  class Record < Base
     self.table_name = "psrecdefn"
     self.primary_key = "recname"
 
