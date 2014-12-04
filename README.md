@@ -3,6 +3,18 @@
 This Rubygem provides an easy way to build ActiveRecord models for interacting
 with a PeopleSoft database.
 
+## Motivation and principles
+
+This library is the third crack at trying to solve this problem. The first two
+iterations where huge, complex, and difficult to maintain. They required
+the explicit definition of each individual model/keys and they required the
+understanding of a thick layer of configuration in order to use them.
+
+This take aims for simplicity. This thing is ~129 lines of code and it
+shouldn't need to grow much bigger than that. There's no wild configuration and
+minimal magic. The goal is to do one thing, do it well, and get out of the
+developer's way.
+
 ## Installation
 
 Add this line to your application's Gemfile:
