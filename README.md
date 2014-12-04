@@ -23,9 +23,16 @@ Or install it yourself as:
 
 PeoplesoftModels works by dynamically constructing ActiveRecord classes for
 accessing PeopleSoft tables. The model names are created under the
-`PeoplesoftModels` namespace. You can use these models directly or subclass
-them to add your own associations, business logic, or just a more meaningful
-name:
+`PeoplesoftModels` namespace.
+
+You can use these models directly:
+
+```ruby
+PeopleosftModels::AcadSubplnTbl.first
+```
+
+Or subclass them to add your own associations, business logic, or just a more
+meaningful name:
 
 ```ruby
 class Minor < PeoplesoftModels::AcadSubplnTbl
