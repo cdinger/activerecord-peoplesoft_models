@@ -12,5 +12,5 @@
 *.o
 *.a
 mkmf.log
-/spec/config/database.yml
+/test/config/database.yml
 /vendor/bundle

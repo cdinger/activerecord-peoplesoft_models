@@ -23,6 +23,3 @@ module PeoplesoftModels
     end
   end
 end
-
-class Person < ActiveRecord::Peoplesoft
-end

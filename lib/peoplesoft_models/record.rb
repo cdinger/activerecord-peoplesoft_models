@@ -32,6 +32,7 @@ module PeoplesoftModels
     def to_model
       model = Class.new(ActiveRecord::Base)
 
+      model.abstract_class = true
       model.table_name = self.table_name
       model.primary_keys = self.keys
       model.extend(EffectiveScope) if self.effective_dated?
