@@ -19,9 +19,7 @@ module PeoplesoftModels
     # http://www.go-faster.co.uk/peopletools/useedit.htm
     #
     def keys
-      key_fields = fields.where("bitand(useedit, 1) = 1")
-                         .order(:fieldnum)
-
+      key_fields = fields.where("bitand(useedit, 1) = 1").order(:fieldnum)
       key_fields.map { |row| row.fieldname.downcase }
     end
 
