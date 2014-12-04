@@ -9,19 +9,20 @@ module PeoplesoftModels
     path = name.to_s.demodulize.underscore
 
     begin
-      mixin = Module.new do
+      klass = Class.new(PeoplesoftModels::Base) do
         @record =  Record.where(recname: path.upcase).first!
 
-        def self.extended(base)
-          base.table_name     = @record.table_name
-          base.primary_keys   = @record.keys
-          base.extend(EffectiveScope) if @record.effective_dated?
-        end
+        self.table_name     = @record.table_name
+        self.primary_keys   = @record.keys
+        self.extend(EffectiveScope) if @record.effective_dated?
       end
 
-      mixin
+      klass
     rescue ActiveRecord::RecordNotFound
       super(name)
     end
   end
+end
+
+class Person < ActiveRecord::Peoplesoft
 end

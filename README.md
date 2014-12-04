@@ -1,7 +1,7 @@
 # Peoplesoft Models for ActiveRecord
 
 This Rubygem provides an easy way to build ActiveRecord models for interacting
-with a PeopleSoft database. 
+with a PeopleSoft database.
 
 ## Installation
 
@@ -21,18 +21,18 @@ Or install it yourself as:
 
 ## Usage
 
-PeoplesoftModels works by dynamically constructing modules that you can mix
-ActiveRecord classes in your project. Providing modules allows you to name your
-classes in a meaningful way for your problem domain. If your customers say
-"minor" instead of "academic sub-plan", that's OK. Use domain language!
+PeoplesoftModels works by dynamically constructing ActiveRecord classes for
+accessing PeopleSoft tables. The model names are created under the
+`PeoplesoftModels` namespace. You can use these models directly or subclass
+them to add your own associations, business logic, or just a more meaningful
+name:
 
 ```ruby
-class Minor < ActiveRecord::Base
-  extend PeoplesoftModels::AcadSubplnTbl
+class Minor < PeoplesoftModels::AcadSubplnTbl
 end
 ```
 
-The PeoplesoftModles::AcadSubPlanTbl module will:
+These classes:
 
 - set the table name
 - set the primary keys
@@ -58,19 +58,14 @@ that are effective as of that date.
 ## Example
 
 ```ruby
-class College < ActiveRecord::Base
-  extend PeoplesoftModels::AcadProgTbl
+class College < PeoplesoftModels::AcadProgTbl
 end
 
-class EnrolledCollege < ActiveRecord::Base
-  extend PeoplesoftModels::AcadProg
-
+class EnrolledCollege < PeoplesoftModels::AcadProg
   belongs_to :college, -> { effective }, primary_key: College.primary_key, foreign_key: College.primary_key
 end
 
-class Student < ActiveRecord::Base
-  extend PeoplesoftModels::Person
-
+class Student < PeoplesoftModels::Person
   has_many :enrolled_colleges, -> { effective }, primary_key: self.primary_key, foreign_key: self.primary_key
   has_many :colleges, through: :enrolled_colleges
 end
@@ -78,6 +73,18 @@ end
 student = Student.where(emplid: "1234567").first
 student.colleges
 ```
+
+## Using a different database connection
+
+The `PeoplesoftModels::Base` class exists only as a convenient point for
+changing the database connection used for accessing PeopleSoft tables. To use a
+different connection, define an initializer in your app like this:
+
+```ruby
+# config/initializers/peoplesoft_models.rb
+PeoplesoftModels::Base.establish_connection :"peoplesoft_#{Rails.env}"
+```
+
 ## Required table permissions
 
 This gem uses PeopleSoft's `PSRECDEFN` and `PSFIELD` tables to lookup up table
