@@ -37,11 +37,6 @@ module PeoplesoftModels
       model.primary_keys = self.keys
       model.extend(EffectiveScope) if self.effective_dated?
 
-      # TODO: set belongs_to
-      # reflection = ActiveRecord::Associations::Builder::BelongsTo.build(model, :acad_prog_tbl, nil, {})
-      # AcitveRecord::Reflection.add_reflection(model, :acad_prog_tbl, reflection
-      # TODO: set has_many
-
       model
     end
   end
