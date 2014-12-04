@@ -17,7 +17,7 @@ module PeoplesoftModels
         self.extend(EffectiveScope) if @record.effective_dated?
       end
 
-      klass
+      const_set(name, klass)
     rescue ActiveRecord::RecordNotFound
       super(name)
     end
