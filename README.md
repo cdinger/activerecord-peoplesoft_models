@@ -1,7 +1,7 @@
 # Peoplesoft Models for ActiveRecord
 
-This Rubygem provides an easy way to build ActiveRecord models for interacting
-with a PeopleSoft database.
+This Rubygem provides an easy way to build ActiveRecord models for reading
+data from a PeopleSoft database.
 
 ## Installation
 
