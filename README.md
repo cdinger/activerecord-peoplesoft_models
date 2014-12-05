@@ -98,6 +98,11 @@ This gem uses PeopleSoft's `PSRECDEFN` and `PSFIELD` tables to lookup up table
 metadata. If access to your PeopleSoft instance is restricted, be sure to ask
 for access to these tables.
 
+## Tests
+
+Run the test suite with `bundle exec rake test`. Tests are run in an in-memory
+sqlite3 database.
+
 ## Motivation and principles
 
 This library is the third crack at trying to solve this problem. The first two
