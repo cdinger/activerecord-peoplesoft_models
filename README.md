@@ -98,6 +98,25 @@ This gem uses PeopleSoft's `PSRECDEFN` and `PSFIELD` tables to lookup up table
 metadata. If access to your PeopleSoft instance is restricted, be sure to ask
 for access to these tables.
 
+## Tests
+
+Run `bundle exec rake test` to run the test suite. By default, tests that need
+to hit a database run in an in-memory sqlite3 database.
+
+`bundle exec rake test`
+
+You can optionally define other connections in `test/config/database.yml` and
+use them by referencing a connection in the `DATABASE` environment variable.
+Tests that alter the database are skipped if you specify a different
+connection.
+
+`DATABASE=peoplesoft_dev bundle exec rake test`
+
+There's also a console available if you want to poke around a real instance of
+PeopleSoft:
+
+`DATABASE=peoplesoft_dev ./console`
+
 ## Motivation and principles
 
 This library is the third crack at trying to solve this problem. The first two
