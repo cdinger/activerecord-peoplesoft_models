@@ -1,8 +1,4 @@
-sqlite:
-  adapter: sqlite3
-  database: ":memory:"
-
-oracle:
+some_poeoplesoft_instance:
   adapter: oracle_enhanced
   host: somehost.example.com
   port: 1521

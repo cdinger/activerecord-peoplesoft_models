@@ -7,12 +7,14 @@ require 'minitest/autorun'
 
 DATABASE = ENV['DATABASE'] || 'sqlite'
 
-ActiveRecord::Base.configurations = YAML::load_file(File.join(File.dirname(__FILE__), 'config', 'database.yml'))
-ActiveRecord::Base.establish_connection(ActiveRecord::Base.configurations[DATABASE])
-
 if DATABASE == 'sqlite'
+  ActiveRecord::Base.establish_connection(adapter:"sqlite3", database: ":memory:")
+
   require 'fake_peoplesoft'
   FakePeoplesoft.create!
+else
+  ActiveRecord::Base.configurations = YAML::load_file(File.join(File.dirname(__FILE__), 'config', 'database.yml'))
+  ActiveRecord::Base.establish_connection(ActiveRecord::Base.configurations[DATABASE])
 end
 
 class Minitest::Test
