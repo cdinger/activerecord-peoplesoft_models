@@ -1,0 +1,11 @@
+sqlite:
+  adapter: sqlite3
+  database: ":memory:"
+
+oracle:
+  adapter: oracle_enhanced
+  host: somehost.example.com
+  port: 1521
+  database: /somedatabase
+  username: someuser
+  password: somepassword

@@ -12,14 +12,20 @@ module PeoplesoftModels
     # http://www.go-faster.co.uk/peopletools/psrecdefn.htm
     #
     def table_name
-      @table_name ||= self.sqltablename.blank? ? "PS_#{self.recname}" : record_row.sqltablename
+      @table_name ||= self.sqltablename.blank? ? "PS_#{self.recname}" : self.sqltablename
       @table_name
     end
 
     # http://www.go-faster.co.uk/peopletools/useedit.htm
     #
     def keys
-      key_fields = fields.where("bitand(useedit, 1) = 1").order(:fieldnum)
+      bitwise_and = if Base.connection.adapter_name.match /oracle/i
+                      "bitand(useedit, 1)"
+                    else
+                      "(useedit & 1)"
+                    end
+
+      key_fields = fields.where("#{bitwise_and} = 1").order(:fieldnum)
       key_fields.map { |row| row.fieldname.downcase }
     end
 
@@ -28,7 +34,7 @@ module PeoplesoftModels
     end
 
     def to_model
-      model = Class.new(ActiveRecord::Base)
+      model = Class.new(Base)
 
       model.table_name = self.table_name
       model.primary_keys = self.keys
