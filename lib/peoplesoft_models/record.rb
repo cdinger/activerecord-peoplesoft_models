@@ -9,6 +9,8 @@ module PeoplesoftModels
                       primary_key: self.primary_key,
                       foreign_key: self.primary_key
 
+    # A record's table name "PS_" + the record name unless it's specified in
+    # the `sqltablename` field.
     # http://www.go-faster.co.uk/peopletools/psrecdefn.htm
     #
     def table_name
@@ -16,6 +18,9 @@ module PeoplesoftModels
       @table_name
     end
 
+    # The useedit field holds many values that you can get from the stored
+    # integer by applying bit masks. `useedit & 1` determines whether or not a
+    # field is part of the primary key.
     # http://www.go-faster.co.uk/peopletools/useedit.htm
     #
     def keys
