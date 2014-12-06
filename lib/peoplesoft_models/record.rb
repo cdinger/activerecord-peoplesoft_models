@@ -19,20 +19,16 @@ module PeoplesoftModels
 
     # The useedit field holds many values that you can get from the stored
     # integer by applying bit masks. `useedit & 1` determines whether or not a
-    # field is part of the primary key.
+    # field is part of the primary key. This operation would be marginally
+    # faster on the database, but doing it in Ruby let's us avoid handling
+    # different syntaxes for the bitwise AND.
     # http://www.go-faster.co.uk/peopletools/useedit.htm
     #
     def keys
-      return @keys if defined? @keys
-      @keys = begin
-        bitwise_and = if Base.connection.adapter_name.match /oracle/i
-                        "bitand(useedit, 1)"
-                      else
-                        "(useedit & 1)"
-                      end
-
-        key_fields = fields.where("#{bitwise_and} = 1").order(:fieldnum)
-        key_fields.map { |row| row.fieldname.downcase }
+      @keys ||= fields.order(:fieldnum).select do |field|
+        field.useedit & 1 == 1
+      end.map do |field|
+        field.fieldname.downcase
       end
     end
 
