@@ -42,6 +42,7 @@ module PeoplesoftModels
       @model.table_name = self.table_name
       @model.primary_keys = self.keys
       @model.extend(EffectiveScope) if self.effective_dated?
+      @model
     end
   end
 end
