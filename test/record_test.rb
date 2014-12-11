@@ -33,4 +33,13 @@ class RecordTest < Minitest::Test
       assert(!@record.effective_dated?)
     end
   end
+
+  def test_not_effective_dated_model
+    @record.stub(:keys, ["blah", "meh"]) do
+      model = @record.to_model
+      assert(model.class != NilClass)
+      assert_equal(Class, model.class)
+      assert(PeoplesoftModels::Base, model.class.superclass)
+    end
+  end
 end
