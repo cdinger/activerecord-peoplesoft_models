@@ -8,7 +8,7 @@ data from a PeopleSoft database.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'activerecord-peoplesoft_models', '~> 0.0.1'
+gem 'activerecord-peoplesoft_models', '~> 0.0.8'
 ```
 
 And then execute:
