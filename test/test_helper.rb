@@ -1,7 +1,5 @@
-require 'rubygems'
 require "bundler"
-Bundler.setup(:default, :development)
-$:.unshift(File.expand_path('../../lib', __FILE__))
+Bundler.setup
 require 'activerecord-peoplesoft_models'
 require 'minitest/autorun'
 
