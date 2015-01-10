@@ -28,7 +28,7 @@ accessing PeopleSoft tables. The model names are created under the
 You can use these models directly:
 
 ```ruby
-PeopleosftModels::AcadSubplnTbl.first
+PeoplesoftModels::AcadSubplnTbl.first
 ```
 
 Or subclass them to add your own associations, business logic, or just a more
