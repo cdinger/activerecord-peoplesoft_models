@@ -100,10 +100,8 @@ for access to these tables.
 
 ## Tests
 
-Run `bundle exec rake test` to run the test suite. By default, tests that need
+`bundle exec rake test` runs the test suite. By default, tests that need
 to hit a database run in an in-memory sqlite3 database.
-
-`bundle exec rake test`
 
 You can optionally define other connections in `test/config/database.yml` and
 use them by referencing a connection in the `DATABASE` environment variable.
