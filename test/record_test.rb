@@ -42,4 +42,13 @@ class RecordTest < Minitest::Test
       assert(PeoplesoftModels::Base, model.class.superclass)
     end
   end
+
+  def test_schema_prefix
+    schema = "campus_solutions"
+    recname = "blah"
+    PeoplesoftModels::Base.stub(:schema_name, schema) do
+      record = PeoplesoftModels::Record.new(recname: recname)
+      assert(record.table_name == "#{schema}.PS_#{recname}")
+    end
+  end
 end

@@ -92,6 +92,26 @@ different connection, define an initializer in your app like this:
 PeoplesoftModels::Base.establish_connection :"peoplesoft_#{Rails.env}"
 ```
 
+## Schema prefixing
+
+The `PeoplesoftModels::Base` class can also be configured to prefix the
+`table_name` of any its subclassed models with the defined schema.
+
+If your database setup requires you to prefix your tables like, say
+`HCM.PS_JOB`, you can do this in an intitializer:
+
+```ruby
+# config/initializers/peoplesoft_models.rb
+PeoplesoftModels::Base.schema_name = "HCM"
+```
+
+That'll cause any of its models to automatically prepend `HCM` like so:
+
+```ruby
+PeoplesoftModels::Job.table_name
+=> "HCM.PS_JOB"
+```
+
 ## Required table permissions
 
 This gem uses PeopleSoft's `PSRECDEFN` and `PSFIELD` tables to lookup up table

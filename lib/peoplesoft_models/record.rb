@@ -14,7 +14,11 @@ module PeoplesoftModels
     # http://www.go-faster.co.uk/peopletools/psrecdefn.htm
     #
     def table_name
-      @table_name ||= self.sqltablename.blank? ? "PS_#{self.recname}" : self.sqltablename
+      @table_name ||= begin
+        schema = self.class.schema_name
+        table = self.sqltablename.blank? ? "PS_#{self.recname}" : self.sqltablename
+        [schema, table].compact.join(".")
+      end
     end
 
     # The useedit field holds many values that you can get from the stored

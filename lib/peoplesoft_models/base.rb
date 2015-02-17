@@ -4,6 +4,8 @@
 #
 module PeoplesoftModels
   class Base < ActiveRecord::Base
+    cattr_accessor :schema_name
+
     self.abstract_class = true
   end
 end
