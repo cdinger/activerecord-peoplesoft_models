@@ -12,6 +12,8 @@ else
   ActiveRecord::Base.establish_connection(ActiveRecord::Base.configurations[ENV['DATABASE']])
 end
 
+ActiveRecord::Base.logger = Logger.new(STDOUT )if $0 == "irb"
+
 class Minitest::Test
   def skip_if_using_real_peoplsoft
     unless ENV['DATABASE'].blank?
