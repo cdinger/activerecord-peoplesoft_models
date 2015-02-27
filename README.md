@@ -114,7 +114,7 @@ PeoplesoftModels::Job.table_name
 
 ## Required table permissions
 
-This gem uses PeopleSoft's `PSRECDEFN` and `PSFIELD` tables to lookup up table
+This gem uses PeopleSoft's `PSRECDEFN` and `PSRECFIELD` tables to lookup up table
 metadata. If access to your PeopleSoft instance is restricted, be sure to ask
 for access to these tables.
 
