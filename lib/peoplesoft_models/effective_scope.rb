@@ -4,7 +4,7 @@ module PeoplesoftModels
 
     def effective(as_of = Date.today)
       table = self.arel_table
-      eff_keys = self.effective_key_values(as_of).as("EFF_KEYS_#{self.table_name}")
+      eff_keys = self.effective_key_values(as_of).as(eff_keys_relation_alias)
       join_conditions = self.primary_keys.map { |key| table[key].eq(eff_keys[key]) }.reduce(:and)
 
       self.joins("INNER JOIN #{eff_keys.to_sql} ON #{join_conditions.to_sql}")
@@ -30,7 +30,7 @@ module PeoplesoftModels
 
     def effseq_values(as_of = Date.today)
         table = self.arel_table
-        effdt_keys = self.effdt_values(as_of).as("EFFDT_#{self.table_name}")
+        effdt_keys = self.effdt_values(as_of).as(effdt_relation_alias)
         join_columns = self.primary_keys - ["effseq"]
         columns = join_columns + [table[:effseq].maximum.as("effseq")]
         join_conditions = join_columns.map { |key| table[key].eq(effdt_keys[key]) }.reduce(:and)
@@ -47,6 +47,16 @@ module PeoplesoftModels
 
     def non_effective_keys
       self.primary_keys - COLUMNS
+    end
+
+    private
+
+    def eff_keys_relation_alias
+      "EFF_KEYS_#{self.table_name.gsub(/^.*\./, "")}"
+    end
+
+    def effdt_relation_alias
+      "EFFDT_#{self.table_name.gsub(/^.*\./, "")}"
     end
   end
 end

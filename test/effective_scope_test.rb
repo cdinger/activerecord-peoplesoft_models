@@ -48,4 +48,13 @@ class EffectiveScopeTest < Minitest::Test
     assert_equal(effdt, effective_row.effdt)
     assert_equal(1, effective_row.effseq)
   end
+
+  def test_generated_table_aliases_with_schema_prefix
+    model = PeoplesoftModels::AcadProg
+
+    model.stub(:table_name, "SOME_SCHEMA.PS_ACAD_PROG") do
+      refute(model.send(:eff_keys_relation_alias).include?("."))
+      refute(model.send(:effdt_relation_alias).include?("."))
+    end
+  end
 end
