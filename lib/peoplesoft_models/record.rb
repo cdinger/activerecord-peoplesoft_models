@@ -2,12 +2,15 @@ require_relative "effective_scope"
 
 module PeoplesoftModels
   class Record < Base
-    self.table_name = "psrecdefn"
     self.primary_key = "recname"
 
     has_many :fields, class_name: "Field",
                       primary_key: self.primary_key,
                       foreign_key: self.primary_key
+
+    def self.table_name
+      [self.schema_name, "PSRECDEFN"].compact.join(".")
+    end
 
     # A record's table name "PS_" + the record name unless it's specified in
     # the `sqltablename` field.

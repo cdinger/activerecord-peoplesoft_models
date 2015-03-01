@@ -51,4 +51,11 @@ class RecordTest < Minitest::Test
       assert(record.table_name == "#{schema}.PS_#{recname}")
     end
   end
+
+  def test_uses_schema_prefix
+    schema = "some_schema"
+    PeoplesoftModels::Base.stub(:schema_name, schema) do
+      assert(PeoplesoftModels::Record.table_name.match(%r(^#{schema}\.)))
+    end
+  end
 end

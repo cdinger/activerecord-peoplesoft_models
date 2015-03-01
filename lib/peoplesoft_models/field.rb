@@ -1,6 +1,9 @@
 module PeoplesoftModels
   class Field < Base
-    self.table_name = "psrecfield"
     self.primary_keys = "recname", "fieldname"
+
+    def self.table_name
+      [self.schema_name, "PSRECFIELD"].compact.join(".")
+    end
   end
 end
