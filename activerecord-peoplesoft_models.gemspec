@@ -18,8 +18,8 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "activerecord", "~> 4.1"
-  spec.add_dependency "composite_primary_keys", "~> 7.0"
+  spec.add_dependency "activerecord", "~> 4.2.0"
+  spec.add_dependency "composite_primary_keys", "~> 8.0"
   spec.add_dependency "activerecord-oracle_enhanced-adapter", "~> 1.5"
   spec.add_dependency "ruby-oci8", "~> 2.1"
 
