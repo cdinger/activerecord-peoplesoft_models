@@ -19,10 +19,10 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "composite_primary_keys", "~> 8.0"
-  spec.add_dependency "activerecord-oracle_enhanced-adapter", "~> 1.5"
-  spec.add_dependency "ruby-oci8", "~> 2.1" unless RUBY_PLATFORM == "java"
 
   spec.add_development_dependency "bundler", "~> 1.7"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "sqlite3", "~> 1.3.10"
+  spec.add_development_dependency "activerecord-oracle_enhanced-adapter", "~> 1.5"
+  spec.add_development_dependency "ruby-oci8", "~> 2.1" unless RUBY_PLATFORM == "java"
 end
