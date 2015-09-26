@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Chris Dinger"]
   spec.email         = ["ding0057@umn.edu"]
   spec.summary       = %q{ActiveRecord models for working with PeopleSoft tables}
-  spec.description   = %q{}
-  spec.homepage      = ""
+  spec.description   = %q{A Rubygem that provides an easy way to build ActiveRecord models that represent PeopleSoft tables}
+  spec.homepage      = "https://github.com/cdinger/activerecord-peoplesoft_models"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
