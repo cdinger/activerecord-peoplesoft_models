@@ -1,4 +1,4 @@
-# Peoplesoft Models for ActiveRecord ![Build Status](https://travis-ci.org/cdinger/activerecord-peoplesoft_models.svg)
+# Peoplesoft Models for ActiveRecord [![Build Status](https://travis-ci.org/cdinger/activerecord-peoplesoft_models.svg)](https://travis-ci.org/cdinger/activerecord-peoplesoft_models)
 
 This Rubygem provides an easy way to build ActiveRecord models for reading
 data from a PeopleSoft database.
