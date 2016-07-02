@@ -32,7 +32,6 @@ module PeoplesoftModels
         table = self.arel_table
         effdt_keys = self.effdt_values(as_of).as(effdt_relation_alias)
         join_columns = self.primary_keys - ["effseq"]
-        columns = join_columns + [table[:effseq].maximum.as("effseq")]
         join_conditions = join_columns.map { |key| table[key].eq(effdt_keys[key]) }.reduce(:and)
 
         self.unscoped
