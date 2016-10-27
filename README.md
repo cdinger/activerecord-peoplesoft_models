@@ -21,6 +21,7 @@ Or install it yourself as:
 
 ## Versions
 
+- Version 2.x works with ActiveRecord 5.0
 - Version 1.x works with ActiveRecord 4.2
 - Version 0.x works with ActiveRecord 4.1
 
