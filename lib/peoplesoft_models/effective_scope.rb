@@ -53,11 +53,15 @@ module PeoplesoftModels
     private
 
     def eff_keys_relation_alias
-      "EFF_KEYS_#{self.table_name.gsub(/^.*\./, "")}"
+      "EFF_KEYS_#{alias_friendly_tablename}"
     end
 
     def effdt_relation_alias
-      "EFFDT_#{self.table_name.gsub(/^.*\./, "")}"
+      "EFFDT_#{alias_friendly_tablename}"
+    end
+
+    def alias_friendly_tablename
+      self.table_name.gsub(/^.*\./, "")
     end
   end
 end
