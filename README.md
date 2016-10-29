@@ -124,6 +124,21 @@ This gem uses PeopleSoft's `PSRECDEFN` and `PSRECFIELD` tables to lookup up tabl
 metadata. If access to your PeopleSoft instance is restricted, be sure to ask
 for access to these tables.
 
+If you can't get access to `PSRECDEFN` and `PSRECFIELD` (or if you don't want to
+pay the small one-time cost with querying table names and keys), you can manually
+specify your models. At minimum, specify `table_name` and `primary_keys`. If
+you're using an effective-dated table, extend `PeoplesoftModels::EffectiveScope`
+to get access to the `effective` scope:
+
+```ruby
+class AcadProgTbl < PeoplesoftModels::Base
+  extend PeoplesoftModels::EffectiveScope # include this only for effective-dated models
+
+  self.table_name = "ps_acad_prog_tbl"
+  self.primary_keys = ["institution", "acad_prog", "effdt"]
+end
+```
+
 ## Tests
 
 `bundle exec rake test` runs the test suite. By default, tests that need
