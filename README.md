@@ -167,3 +167,4 @@ This take aims for simplicity. This thing is less than 100 lines of code and it
 shouldn't need to grow much bigger than that. There's no wild configuration and
 minimal magic. The goal is to do one thing, do it well, and get out of the
 developer's way.
+
